@@ -18,10 +18,10 @@ const App = () => {
 
   if (amountInFromCurrency) {
     fromAmount = amount;
-    toAmount = amount * exchangeRate;
+    toAmount = Math.trunc((amount / exchangeRate) * 100) / 100;
   } else {
     toAmount = amount;
-    fromAmount = amount / exchangeRate;
+    fromAmount = Math.trunc((amount / exchangeRate) * 100) / 100;
   }
 
   useEffect(() => {
@@ -59,8 +59,8 @@ const App = () => {
     <div className="App">
       <div className="panel">
         <header className="panel-heading">
-          <p className="panel-tabs">{`1 USD = ${1 / exchangeRateUSD} UAH`}</p>
-          <p className="panel-tabs">{`1 EUR = ${1 / exchangeRateEUR} UAH`}</p>
+          <p className="panel-tabs">{`1 USD = ${Math.floor(100 / exchangeRateUSD) / 100} UAH`}</p>
+          <p className="panel-tabs">{`1 EUR = ${Math.floor(100 / exchangeRateEUR) / 100} UAH`}</p>
         </header>
         <main className="App__main panel-block">
           <CurrencyRow
